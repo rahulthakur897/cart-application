@@ -1,0 +1,28 @@
+
+@import '~font-awesome/css/font-awesome.css';
+@font-face {
+    font-family: Verdana;
+    src: url(assets/fonts/Verdana.ttf) format("opentype");
+  }
+  * {
+    font-family: 'Verdana';
+  }
+  body{
+    background-color: #f1f3f6 !important;
+  }
+  ::-webkit-input-placeholder {
+	 color: #fff;
+  }
+  
+  .outlineCol{
+    border:1px solid#e2e3e4;
+}
+.pointer{
+  cursor: pointer;
+}
+.f-20{
+  font-size: 20px;
+ }
+ .container-fluid{
+  margin-top: 72px;
+}

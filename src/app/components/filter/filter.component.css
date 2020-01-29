@@ -1,0 +1,9 @@
+.my-slider{
+	position: absolute;
+	width: 85%;
+	margin: 25px 0 0;
+	text-align: center;
+}
+.my-slider > ng5-slider{
+	margin: 35px 0 30px;
+}

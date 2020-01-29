@@ -1,0 +1,31 @@
+<div class="modal fade bd-modal-sm" tabindex="-1" role="dialog" aria-labelledby="my-modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h5 class="modal-title">{{modalName}} Options</h5>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="modalName=== 'Sort'">
+          <div class="custom-control custom-radio custom-control-block">
+          <input type="radio" id="sort-by-high-price" name="itemSortBy" class="custom-control-input" (change)="filters.name='price';filters.orderBy=false;">
+          <label class="custom-control-label" for="sort-by-high-price"><b>Price -- High to Low</b></label>
+        </div>
+        <div class="custom-control custom-radio custom-control-block">
+          <input type="radio" id="sort-by-low-price" name="itemSortBy" class="custom-control-input" (change)="filters.name='price';filters.orderBy=true;">
+          <label class="custom-control-label" for="sort-by-low-price"><b>Price -- Low to High</b> </label>
+        </div>
+        <div class="custom-control custom-radio custom-control-block">
+          <input type="radio" id="sort-by-discount" name="itemSortBy" class="custom-control-input" (change)="filters.name='discount';filters.orderBy=false;">
+          <label class="custom-control-label" for="sort-by-discount"><b>Discount</b> </label>
+          </div>
+        </div>
+        <div *ngIf="modalName=== 'Filter'">
+          <app-filter (sortItem)="getMinMaxPrice($event)"></app-filter>
+        </div>
+      </div>
+      <div class="modal-footer my-footer-modal">
+        <span class="text-left" data-dismiss="modal">Cancel</span>
+        <span class="text-right" data-dismiss="modal" (click)="sortFilter(filters.name,filters.orderBy,filters.price.min,filters.price.max)">Apply</span>
+      </div>    
+  </div>
+</div>

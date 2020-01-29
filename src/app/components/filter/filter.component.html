@@ -1,0 +1,19 @@
+<div class="desktop-view d-none d-sm-flex">
+  <div class="my-slider">
+	<ng5-slider
+			[(value)]="minValue" 
+			[(highValue)]="maxValue" 
+			[options]="options" 
+			(valueChange)="getMinValue($event)" 
+			(highValueChange)="getMaxValue($event)"></ng5-slider>
+	<button class="btn btn-primary" (click)="sortFilter(minValue, maxValue)">Apply</button>
+</div>
+</div>
+<div class="mobile-view d-flex d-sm-none">
+  <ng5-slider
+			[(value)]="minValue" 
+			[(highValue)]="maxValue" 
+			[options]="options" 
+			(valueChange)="getMinValue($event)" 
+			(highValueChange)="getMaxValue($event)"></ng5-slider>
+</div>
