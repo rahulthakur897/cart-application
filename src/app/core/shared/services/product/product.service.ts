@@ -15,7 +15,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProductDetails() {
+  getProductDetails(){
     return this.http.get("https://api.myjson.com/bins/qzuzi");
   }
 
@@ -23,8 +23,6 @@ export class ProductService {
     this.getModal.next(modalType);
   }
   
- 
-
   getCartCount(){
     return this.totalItems.asObservable();
   }

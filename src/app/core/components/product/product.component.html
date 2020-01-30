@@ -1,0 +1,14 @@
+<div class="product-grid4">
+    <div class="product-image4">
+        <img class="pic-1" [src]="item.img_url">
+    </div>
+    <div class="product-content">
+        <h3 class="title">{{item.name}}</h3> 
+        <div class="price"><span class="priceBlack">${{item.discount>0?(item.price-(item.price/item.discount)| number:'3.1-2'):item.price}}
+        </span>
+            <span class="span"> {{item.price}}</span>
+            {{item.discount}}% off
+        </div>
+        <a class="add-to-cart btn btn-warning" (click)="addToCart(item)">ADD TO CART</a>
+    </div>
+</div>

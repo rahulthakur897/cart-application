@@ -1,5 +1,5 @@
 import { Component, OnInit,OnDestroy,Input,EventEmitter,Output } from '@angular/core';
-import {ProductService} from '../services/product/product.service';
+import {ProductService} from '../../shared/services/product/product.service';
 import { Subscription }   from 'rxjs';
 
 @Component({
@@ -36,6 +36,7 @@ export class ModalComponent implements OnInit {
   getMinMaxPrice(minValue:number, maxValue:number){
     console.log(minValue, maxValue)
   }
+  
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     this.subscription.unsubscribe();

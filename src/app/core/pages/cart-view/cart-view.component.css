@@ -1,0 +1,29 @@
+.m-t-90{ margin-top: 90px;}
+.cart-item{
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  height: 150px;
+  clear: both;
+}
+.cart-item__price--final{
+  color: #827a7a;
+  text-decoration: line-through;
+}
+.cart-item__price--discount{
+  color: green;
+}
+.cart-item__quantity > .plus-btn, .cart-item__quantity > .minus-btn{
+  border: 1px solid #000;
+  border-radius: 15px;
+  width:10%;
+  margin: 0 5%;
+}
+.cart-item__quantity > .count-input{
+  width: 50px;
+}
+.price-block{
+  padding:10px 20px;
+  border: 1px solid #ccc;
+}
+.p-t-20 {padding-top: 20px;}
+.p-b-20 {padding-bottom: 20px;}

@@ -14,7 +14,7 @@ export class FilterComponent implements OnInit {
     floor: 10,
     ceil: 1000
   };
-  @Output() sortItem = new EventEmitter<{min:number, max:number}>();
+  @Output() sortItem = new EventEmitter<{minPrice:number, maxPrice:number}>();
 
   constructor() { }
 
@@ -29,7 +29,7 @@ export class FilterComponent implements OnInit {
     this.maxValue = maxValue;
   }
 
-  sortFilter(min:number, max:number) {
-    this.sortItem.emit({min, max});
+  sortFilter(minPrice:number, maxPrice:number) {
+    this.sortItem.emit({minPrice, maxPrice});
   }
 }

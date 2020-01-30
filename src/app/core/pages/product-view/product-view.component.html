@@ -1,4 +1,4 @@
-<div class="row d-flex">
+<div class="row d-flex mt-70">
   <div class="col-6 col-sm-6 col-md-2 col-lg-2 outlineCol">
     <div class="m-4 f-20 d-none d-sm-flex">
       <i class="fa fa-filter mr-1"></i><strong>Filter</strong>
@@ -17,10 +17,11 @@
   </div>
   <div class="col-12 col-sm-10 col-md-10 col-lg-10">
     <div class="row">
-      <div class="col-6 col-md-3 col-sm-3 col-lg-3 outlineCol" *ngFor="let item of productDetails | SortBy:this.filters.name:this.filters.orderBy:this.filters.price.min:this.filters.price.max;let i = index">
-        <app-product [item]="item" class="m-1"></app-product>
-      </div>
-    </div>
+  	  <div class="col-6 col-md-3 col-sm-3 col-lg-3 outlineCol" 
+  	        *ngFor="let item of productDetails | SortBy:this.filters.name:this.filters.orderBy:this.filters.minPrice:this.filters.maxPrice;let i = index">
+  	      <app-product [item]="item" class="m-1"></app-product>
+  	  </div>
+  	</div>
   </div>
 </div>
 <app-modal (sortItem)="toggleSort($event)"></app-modal>
