@@ -20,26 +20,23 @@ export class CartViewComponent implements OnInit {
 
   ngOnInit() {
     this.cartItems = this.prodService.cart;
-    this.cartItems.forEach((item) => {
-      item.quantity = 1;
-    });
     this.itemCount = this.cartItems.length;
     this.copiedCartItems = JSON.stringify(this.cartItems);
     this.calculateTotal(this.cartItems);
   }
 
-  calculateTotal(cart){
+  calculateTotal(cart:any){
     this.payablePrice = 0;
     this.discountPrice = 0;
     this.totalPrice = 0;
-    cart.forEach( (item) => {
+    cart.forEach( (item:any) => {
       this.payablePrice += item.price;
       this.discountPrice += ((item.price * item.discount)/100);
     });
     this.totalPrice = this.payablePrice - this.discountPrice;
   }
 
-  addToCart(type, item){
+  addToCart(type:string, item:any){
     if(item.quantity >= 1){
       if(type === 'inc'){
         item.quantity++;
@@ -55,17 +52,21 @@ export class CartViewComponent implements OnInit {
 
   updateCart(item){
     let newArr: any[] = JSON.parse(this.copiedCartItems).map( (val) => {
-      if(val.name === item.name){
+      if(val.id === item.id){
         val.quantity = item.quantity;
         val.price = val.price*item.quantity;
       }
       return val;
     });
+    this.cartItems = newArr;
     this.calculateTotal(newArr);
+    this.prodService.addItemToCart(item);
   }
 
   removeItemFromCart(index){
     this.cartItems.splice(index, 1);
+    this.prodService.ItemsIdCollection.splice(index, 1);
+    this.prodService.removeItemFromCart(index);
     this.calculateTotal(this.cartItems);
   }
 }

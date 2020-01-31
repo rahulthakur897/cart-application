@@ -8,13 +8,16 @@ import {ProductService} from '../../shared/services/product/product.service';
 })
 export class CartIconComponent implements OnInit {
 
-  cartTotal: number;
+  cartTotal: number =0;
 
   constructor(private prodService: ProductService) { }
 
   ngOnInit() {
-  	this.prodService.getCartCount().subscribe(cart => {
-      this.cartTotal = cart.length;
+    this.prodService.getCartCount().subscribe(cart => {
+      this.cartTotal=0;
+      cart.forEach((item) => {
+        this.cartTotal += item.quantity;
+      });
     });
   }
 
