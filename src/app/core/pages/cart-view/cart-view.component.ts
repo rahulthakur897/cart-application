@@ -14,14 +14,15 @@ export class CartViewComponent implements OnInit {
   discountPrice: number = 0;
   totalPrice: number = 0;
   copiedCartItems: string;
-  itemCount: number = 0;
+  cartTotal: number;
   
   constructor(private prodService: ProductService) { }
 
   ngOnInit() {
     this.cartItems = this.prodService.cart;
-    this.itemCount = this.cartItems.length;
-    this.copiedCartItems = JSON.stringify(this.cartItems);
+    this.prodService.totalItemsCount.subscribe(count => {
+      this.cartTotal = count;
+    });
     this.calculateTotal(this.cartItems);
   }
 
@@ -30,40 +31,26 @@ export class CartViewComponent implements OnInit {
     this.discountPrice = 0;
     this.totalPrice = 0;
     cart.forEach( (item:any) => {
-      this.payablePrice += item.price;
-      this.discountPrice += ((item.price * item.discount)/100);
+      this.payablePrice += item.price * item.quantity;
+      this.discountPrice += ((item.price * item.quantity * item.discount)/100);
     });
     this.totalPrice = this.payablePrice - this.discountPrice;
   }
 
   addToCart(type:string, item:any){
-    if(item.quantity >= 1){
-      if(type === 'inc'){
-        item.quantity++;
-        this.itemCount += 1;
-      } else {
-        item.quantity--;
-        if(item.quantity == 0) item.quantity = 1;
-        else this.itemCount -= 1;
-      }
-      this.updateCart(item);
+    console.log('inmethod',item.quantity)
+    if(item.quantity >= 1) {
+      this.cartItems.forEach( (val) => {
+        if(val.id === item.id){
+          val.quantity = item.quantity;
+        }
+      });
+      this.prodService.addItemToCart(item, type);
+      this.calculateTotal(this.cartItems);
     }
   }
 
-  updateCart(item){
-    let newArr: any[] = JSON.parse(this.copiedCartItems).map( (val) => {
-      if(val.id === item.id){
-        val.quantity = item.quantity;
-        val.price = val.price*item.quantity;
-      }
-      return val;
-    });
-    this.cartItems = newArr;
-    this.calculateTotal(newArr);
-    this.prodService.addItemToCart(item);
-  }
-
-  removeItemFromCart(index){
+  removeItemFromCart(index: number){
     this.cartItems.splice(index, 1);
     this.prodService.ItemsIdCollection.splice(index, 1);
     this.prodService.removeItemFromCart(index);
